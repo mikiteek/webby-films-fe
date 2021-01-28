@@ -1,11 +1,13 @@
 import React, {Component} from "react";
+import {connect} from "react-redux";
 
+import filmsOperations from "../../redux/films/filmsOperations";
 import styles from "./MovieItem.module.scss";
 
 class MovieItem extends Component {
   handleDeleteMovie = (event) => {
     const {target: {dataset}} = event;
-    console.log(dataset.id);
+    this.props.onDeleteContact(dataset.id);
   }
 
   toggleDropDownList = (event) => {
@@ -44,6 +46,10 @@ class MovieItem extends Component {
       </li>
     );
   }
+}
+
+const mapDispatchToProps = {
+  onDeleteContact: filmsOperations.deleteFilm,
 }
 
 export default MovieItem;
