@@ -8,6 +8,10 @@ const getAllFilmsRequest = createAction("film/getAllRequest");
 const getAllFilmsSuccess = createAction("film/getAllSuccess");
 const getAllFilmsError = createAction("film/getAllError");
 
+const getFilmsByQueryRequest = createAction("film/getByQueryRequest");
+const getFilmsByQuerySuccess = createAction("film/getByQuerySuccess");
+const getFilmsByQueryError = createAction("film/getByQueryError");
+
 export default {
   deleteFilmRequest,
   deleteFilmSuccess,
@@ -15,4 +19,7 @@ export default {
   getAllFilmsRequest,
   getAllFilmsSuccess,
   getAllFilmsError,
+  getFilmsByQueryRequest,
+  getFilmsByQuerySuccess,
+  getFilmsByQueryError,
 }

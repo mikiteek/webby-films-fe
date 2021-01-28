@@ -1,5 +1,7 @@
 import React, {Component} from "react";
+import {connect} from "react-redux";
 
+import filmsOperations from "../../redux/films/filmsOperations";
 import styles from "./SearchForm.module.scss";
 
 class SearchForm extends Component {
@@ -10,6 +12,9 @@ class SearchForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    const {title, star} = this.state;
+    this.props.onSubmit({title, star})
+
   }
 
   handleChange = event => {
@@ -31,4 +36,8 @@ class SearchForm extends Component {
   }
 }
 
-export default SearchForm;
+const mapDispatchToProps = {
+  onSubmit: filmsOperations.getFilmsByQuery,
+}
+
+export default connect(null, mapDispatchToProps)(SearchForm);
