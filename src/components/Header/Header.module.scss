@@ -1,0 +1,27 @@
+@import "Header.variables";
+
+.header {
+  padding-top: 41px;
+}
+
+.wrapperHome {
+  background-image: $header-gradient, $header-home-bg-320-1x;
+  @extend %wrapper-background;
+
+  @media (min-width: 768px) {
+    background-image: $header-gradient, $header-home-bg-768-1x;
+  }
+  @media (min-width: 1024px) {
+    background-image: $header-gradient, $header-home-bg-1024-1x;
+  }
+
+  @media (min-resolution: 192dpi), (min-resolution: 2dppx) {
+    background-image: $header-gradient, $header-home-bg-320-2x;
+    @media (min-width: 768px) {
+      background-image: $header-gradient, $header-home-bg-768-2x;
+    }
+    @media (min-width: 1024px) {
+      background-image: $header-gradient, $header-home-bg-1024-2x;
+    }
+  }
+}

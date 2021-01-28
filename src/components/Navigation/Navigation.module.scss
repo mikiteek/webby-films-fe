@@ -1,0 +1,68 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 41px;
+}
+
+.headerTitleLink {
+  display: flex;
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 1.2;
+}
+
+.headerTitle {
+  visibility: hidden;
+  position: absolute;
+  @media (min-width: 768px) {
+    visibility: visible;
+    position: static;
+  }
+}
+
+.logo {
+  margin-right: 10px;
+}
+
+.navList {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navListItem:not(:last-child) {
+  margin-right: 40px;
+}
+
+.navLink {
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.navLinkActive::after {
+  content: "";
+  display: block;
+  height: 3px;
+  background-color: #ff6b08;
+}
+//
+//.visuallyHidden:not(:focus):not(:active),
+//input[type="checkbox"].visually-hidden,
+//input[type="radio"].visually-hidden {
+//  position: absolute;
+//  width: 1px;
+//  height: 1px;
+//  margin: -1px;
+//  border: 0;
+//  padding: 0;
+//  white-space: nowrap;
+//  clip-path: inset(100%);
+//  clip: rect(0 0 0 0);
+//  overflow: hidden;
+//}
