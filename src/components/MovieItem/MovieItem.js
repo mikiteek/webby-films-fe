@@ -52,4 +52,4 @@ const mapDispatchToProps = {
   onDeleteContact: filmsOperations.deleteFilm,
 }
 
-export default MovieItem;
+export default connect(null, mapDispatchToProps)(MovieItem);
