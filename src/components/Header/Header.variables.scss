@@ -1,0 +1,24 @@
+$header-gradient: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56));
+
+$header-home-bg-320-1x: url("../../static/images/header/header-home-bg-320@1x.png");
+$header-home-bg-320-2x: url("../../static/images/header/header-home-bg-320@2x.png");
+$header-library-bg-320-1x: url("../../static/images/header/header-library-bg-320@1x.png");
+$header-library-bg-320-2x: url("../../static/images/header/header-library-bg-320@2x.png");
+
+$header-home-bg-768-1x: url("../../static/images/header/header-home-bg-768@1x.png");
+$header-home-bg-768-2x: url("../../static/images/header/header-home-bg-768@2x.png");
+$header-library-bg-768-1x: url("../../static/images/header/header-home-bg-768@1x.png");
+$header-library-bg-768-2x: url("../../static/images/header/header-home-bg-768@2x.png");
+
+$header-home-bg-1024-1x: url("../../static/images/header/header-home-bg-1024@1x.png");
+$header-home-bg-1024-2x: url("../../static/images/header/header-home-bg-1024@2x.png");
+$header-library-bg-1024-1x: url("../../static/images/header/header-library-bg-1024@1x.png");
+$header-library-bg-1024-2x: url("../../static/images/header/header-library-bg-1024@2x.png");
+
+
+%wrapper-background {
+  height: 230px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
