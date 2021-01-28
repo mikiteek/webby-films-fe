@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 
 import Header from "../../components/Header";
+import MovieItem from "../../components/MovieItem";
 import styles from "./HomePage.module.scss";
 
 class HomePage extends Component {
@@ -8,6 +9,7 @@ class HomePage extends Component {
     return (
       <div>
         <Header/>
+        <MovieItem/>
       </div>
     );
   }
