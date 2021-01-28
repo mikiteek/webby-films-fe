@@ -9,7 +9,8 @@ class HomePage extends Component {
     return (
       <div>
         <Header/>
-        <MovieItem/>
+
+        {/*<MovieItem/>*/}
       </div>
     );
   }

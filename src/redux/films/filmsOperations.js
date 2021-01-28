@@ -13,6 +13,16 @@ const deleteFilm = id => dispatch => {
     .catch(({response}) => dispatch(filmsActions.deleteFilmError(response)))
 }
 
+const getAllFilms = () => dispatch => {
+  dispatch(filmsActions.getAllFilmsRequest());
+
+  axios
+    .get("/films")
+    .then(({data}) => dispatch(filmsActions.getAllFilmsSuccess(data)))
+    .catch(({response}) => dispatch(filmsActions.getAllFilmsError(response)))
+}
+
 export default {
   deleteFilm,
+  getAllFilms,
 }
