@@ -14,13 +14,14 @@ class MovieItem extends Component {
     if (event.target !== event.currentTarget) {
       return;
     }
-    const dropDownList = document.querySelector(".js-drop-down-list");
+    const {id} = this.props;
+    const dropDownList = document.querySelector(".js-drop-down-list" + id);
     dropDownList.classList.toggle(styles.dropDownListShow);
   }
 
   render() {
     const {title, id, releaseYear, format, stars} = this.props;
-    const dropDownListStyles = ["js-drop-down-list", styles.dropDownList].join(" ");
+    const dropDownListStyles = ["js-drop-down-list" + id, styles.dropDownList].join(" ");
     return (
       <li className={styles.movieItem}>
         <div className={styles.headerBlock} onClick={this.toggleDropDownList}>
