@@ -31,10 +31,9 @@ class AddFilmForm extends Component {
   render() {
     const {title, releaseYear, format, stars} = this.state;
     return (
-      <div>
-        <h2>Add film</h2>
+      <div className={styles.formBlock}>
+        <h2 className={styles.formTitle}>Add film</h2>
         <ValidatorForm
-          // ref="form"
           onSubmit={this.handleSubmit}
           instantValidate={false}
         >

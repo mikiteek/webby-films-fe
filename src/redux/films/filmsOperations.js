@@ -15,8 +15,8 @@ const deleteFilm = id => dispatch => {
     .then(() => dispatch(filmsActions.deleteFilmSuccess(id)))
     .catch(({response}) => dispatch(filmsActions.deleteFilmError(response)))
     .finally(() => {
-      successDeleteDataNotify();
-      dispatch(filmsActions.showSpinner(false))
+      setTimeout(successDeleteDataNotify, 0);
+      dispatch(filmsActions.showSpinner(false));
     });
 }
 
@@ -50,7 +50,7 @@ const addFilm = film => dispatch => {
     .then(({data}) => dispatch(filmsActions.getFilmsByQuerySuccess(data)))
     .catch(({response}) => dispatch(filmsActions.getFilmsByQueryError(response)))
     .finally(() => {
-      successAddDataNotify();
+      setTimeout(successAddDataNotify, 0);
       dispatch(filmsActions.showSpinner(false));
     });
 }

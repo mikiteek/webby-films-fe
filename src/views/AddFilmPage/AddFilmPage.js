@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import Header from "../../components/Header";
 import AddFilmForm from "../../components/AddFilmForm";
+import AddFilmsFromFilesForm from "../../components/AddFilmsFromFilesForm";
 import Spinner from "../../components/Spinner";
 import filmsSelector from "../../redux/films/filmsSelector";
 import styles from "./AddFilmPage.module.scss";
@@ -18,6 +19,7 @@ class AddFilmPage extends Component {
         <div className={styles.mainBlock}>
           <main className="container">
             <AddFilmForm/>
+            <AddFilmsFromFilesForm/>
           </main>
         </div>
         <ToastContainer/>

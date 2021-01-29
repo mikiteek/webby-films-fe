@@ -1,15 +1,11 @@
 @import "../../static/scss/mixins";
 
-.formBlock {
-  margin-bottom: 30px;
-}
-
 .formTitle {
   margin-bottom: 20px;
   @include my-font-styles(#000, 100%, 24px, 700);
 }
 
-.textValidatorInput {
+.fileValidatorInput {
   position: relative;
   padding-left: 10px;
   height: 48px;
@@ -17,11 +13,7 @@
 }
 
 .inputsBlock {
-  margin-bottom: 60px;
-
-  & div:not(:last-child) {
-    margin-bottom: 20px;
-  }
+  margin-bottom: 20px;
 }
 
 .buttonsBlock {
