@@ -8,10 +8,10 @@ import styles from "./AddFilmForm.module.scss";
 
 class AddFilmForm extends Component {
   state = {
-    title: "Donny Darco",
-    releaseYear: 1986,
-    format: "DVD",
-    stars: "Samanta Darco, Jacke Noring",
+    title: "",
+    releaseYear: "",
+    format: "",
+    stars: "",
   }
 
   handleSubmit = (event) => {
