@@ -1,8 +1,9 @@
 import React, {Component} from "react";
+import {connect} from "react-redux";
 import {ValidatorForm} from "react-form-validator-core";
 
-
 import TextValidator from "../TextValidator";
+import filmsOperations from "../../redux/films/filmsOperations";
 import styles from "./AddFilmForm.module.scss";
 
 class AddFilmForm extends Component {
@@ -15,7 +16,11 @@ class AddFilmForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state)
+    const body = {
+      ...this.state,
+      stars: this.state.stars.split(", ")
+    }
+    this.props.onSubmit(body)
   }
 
   handleChange = (event) => {
@@ -84,4 +89,8 @@ class AddFilmForm extends Component {
   }
 }
 
-export default AddFilmForm;
+const mapDispatchToProps = {
+  onSubmit: filmsOperations.addFilm,
+}
+
+export default connect(null, mapDispatchToProps)(AddFilmForm);

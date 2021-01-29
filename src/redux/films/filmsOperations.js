@@ -32,8 +32,18 @@ const getFilmsByQuery = ({title, star}) => dispatch => {
     .catch(({response}) => dispatch(filmsActions.getFilmsByQueryError(response)))
 }
 
+const addFilm = film => dispatch => {
+  dispatch(filmsActions.addFilmRequest());
+
+  axios
+    .post("/films", film)
+    .then(({data}) => dispatch(filmsActions.getFilmsByQuerySuccess(data)))
+    .catch(({response}) => dispatch(filmsActions.getFilmsByQueryError(response)))
+}
+
 export default {
   deleteFilm,
   getAllFilms,
   getFilmsByQuery,
+  addFilm,
 }
