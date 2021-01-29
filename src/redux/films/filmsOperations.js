@@ -2,6 +2,7 @@ import axios from "axios";
 
 import filmsActions from "./filmsActions";
 import generateQueryString from "../../helpers/generateQueryString";
+import {successAddDataNotify, successDeleteDataNotify} from "../../utils/notify";
 
 axios.defaults.baseURL = "https://calm-woodland-55145.herokuapp.com";
 
@@ -13,7 +14,10 @@ const deleteFilm = id => dispatch => {
     .delete(`/films/${id}`)
     .then(() => dispatch(filmsActions.deleteFilmSuccess(id)))
     .catch(({response}) => dispatch(filmsActions.deleteFilmError(response)))
-    .finally(() => dispatch(filmsActions.showSpinner(false)));
+    .finally(() => {
+      successDeleteDataNotify();
+      dispatch(filmsActions.showSpinner(false))
+    });
 }
 
 const getAllFilms = () => dispatch => {
@@ -45,7 +49,10 @@ const addFilm = film => dispatch => {
     .post("/films", film)
     .then(({data}) => dispatch(filmsActions.getFilmsByQuerySuccess(data)))
     .catch(({response}) => dispatch(filmsActions.getFilmsByQueryError(response)))
-    .finally(() => dispatch(filmsActions.showSpinner(false)));
+    .finally(() => {
+      successAddDataNotify();
+      dispatch(filmsActions.showSpinner(false));
+    });
 }
 
 export default {

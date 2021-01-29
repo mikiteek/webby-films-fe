@@ -1,5 +1,7 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
+import {ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import filmsOperations from "../../redux/films/filmsOperations";
 import filmsSelector from "../../redux/films/filmsSelector";
@@ -36,6 +38,7 @@ class HomePage extends Component {
             </ul>
           </main>
         </div>
+        <ToastContainer/>
       </div>
     );
   }
