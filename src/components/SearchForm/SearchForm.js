@@ -24,7 +24,7 @@ class SearchForm extends Component {
 
   render() {
     return (
-      <div>
+      <div className="js-form-search-block">
         <form className={styles.formFilms} onSubmit={this.handleSubmit}>
           <input className={styles.formInput} type="text" name="title" placeholder="Film's title (optional)" onChange={this.handleChange}/>
           <input className={styles.formInput} type="text" name="star" placeholder="Star's name (optional)" onChange={this.handleChange}/>

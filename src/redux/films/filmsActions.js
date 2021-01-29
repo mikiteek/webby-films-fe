@@ -12,6 +12,12 @@ const getFilmsByQueryRequest = createAction("film/getByQueryRequest");
 const getFilmsByQuerySuccess = createAction("film/getByQuerySuccess");
 const getFilmsByQueryError = createAction("film/getByQueryError");
 
+const addFilmRequest = createAction("film/addFilmRequest");
+const addFilmSuccess = createAction("film/addFilmSuccess");
+const addFilmError = createAction("film/addFilmError");
+
+const showSpinner = createAction("spinner/showSpinner");
+
 export default {
   deleteFilmRequest,
   deleteFilmSuccess,
@@ -22,4 +28,8 @@ export default {
   getFilmsByQueryRequest,
   getFilmsByQuerySuccess,
   getFilmsByQueryError,
+  addFilmRequest,
+  addFilmSuccess,
+  addFilmError,
+  showSpinner,
 }

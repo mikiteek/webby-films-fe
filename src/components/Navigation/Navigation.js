@@ -28,6 +28,16 @@ class Navigation extends Component {
                 Home
               </NavLink>
             </li>
+            <li className={styles.navListItem}>
+              <NavLink
+                exact
+                to={"/add-film"}
+                className={styles.navLink}
+                activeClassName={styles.navLinkActive}
+              >
+                Add film
+              </NavLink>
+            </li>
           </ul>
         </nav>
       </div>
