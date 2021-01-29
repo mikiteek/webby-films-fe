@@ -36,8 +36,8 @@ class AddFilmsFromFilesForm extends Component {
               type="file"
               value={file}
               accept=".json, text/plain"
-              validators={['required', 'isFile', 'maxFileSize:' + 1 * 1024 * 1024, 'allowedExtensions:text/plain,.json']}
-              errorMessages={['file is required', 'file is not valid', 'size must not exceed 1MB', 'only .json and .txt']}
+              validators={['required', 'isFile', 'maxFileSize:' + 1 * 1024 * 1024]}
+              errorMessages={['file is required', 'file is not valid', 'size must not exceed 1MB']}
             />
           </div>
           <div className={styles.buttonsBlock}>
