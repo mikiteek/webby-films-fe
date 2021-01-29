@@ -19,7 +19,13 @@ const error = createReducer(errorInit, {
   [filmsActions.addFilmError]: (_, payload) => payload,
 });
 
+const spinnerInit = false;
+const spinner = createReducer(spinnerInit, {
+  [filmsActions.showSpinner]: (state, {payload}) => payload,
+});
+
 export default combineReducers({
   items,
   error,
+  spinner,
 })
