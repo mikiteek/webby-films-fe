@@ -15,8 +15,8 @@ const deleteFilm = id => dispatch => {
     .then(() => dispatch(filmsActions.deleteFilmSuccess(id)))
     .catch(({response}) => dispatch(filmsActions.deleteFilmError(response)))
     .finally(() => {
-      successDeleteDataNotify();
-      dispatch(filmsActions.showSpinner(false))
+      setTimeout(successDeleteDataNotify, 0);
+      dispatch(filmsActions.showSpinner(false));
     });
 }
 
@@ -50,7 +50,28 @@ const addFilm = film => dispatch => {
     .then(({data}) => dispatch(filmsActions.getFilmsByQuerySuccess(data)))
     .catch(({response}) => dispatch(filmsActions.getFilmsByQueryError(response)))
     .finally(() => {
-      successAddDataNotify();
+      setTimeout(successAddDataNotify, 0);
+      dispatch(filmsActions.showSpinner(false));
+    });
+}
+
+const addFilmsFromFiles = film => dispatch => {
+  dispatch(filmsActions.addFilmsDataFromFileRequest());
+  dispatch(filmsActions.showSpinner(true));
+
+  const formData = new FormData();
+  formData.append("films", film);
+
+  axios
+    .post("/films/upload", formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+    .then(({data}) => dispatch(filmsActions.addFilmsDataFromFileSuccess(data)))
+    .catch(({response}) => dispatch(filmsActions.addFilmsDataFromFileError(response)))
+    .finally(() => {
+      setTimeout(successAddDataNotify, 0);
       dispatch(filmsActions.showSpinner(false));
     });
 }
@@ -60,4 +81,5 @@ export default {
   getAllFilms,
   getFilmsByQuery,
   addFilm,
+  addFilmsFromFiles,
 }

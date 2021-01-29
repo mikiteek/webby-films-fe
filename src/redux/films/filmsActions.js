@@ -16,6 +16,10 @@ const addFilmRequest = createAction("film/addFilmRequest");
 const addFilmSuccess = createAction("film/addFilmSuccess");
 const addFilmError = createAction("film/addFilmError");
 
+const addFilmsDataFromFileRequest = createAction("films/addFromDataRequest");
+const addFilmsDataFromFileSuccess = createAction("films/addFromDataSuccess");
+const addFilmsDataFromFileError = createAction("films/addFromDataError");
+
 const showSpinner = createAction("spinner/showSpinner");
 
 export default {
@@ -31,5 +35,8 @@ export default {
   addFilmRequest,
   addFilmSuccess,
   addFilmError,
+  addFilmsDataFromFileRequest,
+  addFilmsDataFromFileSuccess,
+  addFilmsDataFromFileError,
   showSpinner,
 }

@@ -9,6 +9,7 @@ const items = createReducer(itemsInit, {
   [filmsActions.getAllFilmsSuccess]: (state, {payload}) => payload,
   [filmsActions.getFilmsByQuerySuccess]: (state, {payload}) => payload,
   [filmsActions.addFilmSuccess]: (state, {payload}) => state.push(payload),
+  [filmsActions.addFilmsDataFromFileSuccess]: (state, {payload}) => state.push(...payload),
 });
 
 const errorInit = {};
@@ -17,6 +18,7 @@ const error = createReducer(errorInit, {
   [filmsActions.getAllFilmsError]: (_, {payload}) => payload,
   [filmsActions.getFilmsByQueryError]: (_, {payload}) => payload,
   [filmsActions.addFilmError]: (_, payload) => payload,
+  [filmsActions.addFilmsDataFromFileError]: (_, {payload}) => payload,
 });
 
 const spinnerInit = false;
