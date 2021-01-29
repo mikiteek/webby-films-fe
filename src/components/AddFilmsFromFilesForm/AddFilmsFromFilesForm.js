@@ -1,7 +1,9 @@
 import React, {Component} from "react";
 import {ValidatorForm} from "react-form-validator-core";
+import {connect} from "react-redux";
 
 import FileValidator from "../FileValidator";
+import filmsOperations from "../../redux/films/filmsOperations";
 import styles from "./AddFilmsFromFilesForm.module.scss";
 
 class AddFilmsFromFilesForm extends Component {
@@ -15,7 +17,7 @@ class AddFilmsFromFilesForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state.file)
+    this.props.onSubmit(this.state.file);
   }
 
   render() {
@@ -47,4 +49,8 @@ class AddFilmsFromFilesForm extends Component {
   }
 }
 
-export default AddFilmsFromFilesForm;
+const mapDispatchToProps = {
+  onSubmit: filmsOperations.addFilmsFromFiles,
+}
+
+export default connect(null, mapDispatchToProps)(AddFilmsFromFilesForm);

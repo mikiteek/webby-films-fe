@@ -55,9 +55,31 @@ const addFilm = film => dispatch => {
     });
 }
 
+const addFilmsFromFiles = film => dispatch => {
+  dispatch(filmsActions.addFilmsDataFromFileRequest());
+  dispatch(filmsActions.showSpinner(true));
+
+  const formData = new FormData();
+  formData.append("films", film);
+
+  axios
+    .post("/films/upload", formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+    .then(({data}) => dispatch(filmsActions.addFilmsDataFromFileSuccess(data)))
+    .catch(({response}) => dispatch(filmsActions.addFilmsDataFromFileError(response)))
+    .finally(() => {
+      setTimeout(successAddDataNotify, 0);
+      dispatch(filmsActions.showSpinner(false));
+    });
+}
+
 export default {
   deleteFilm,
   getAllFilms,
   getFilmsByQuery,
   addFilm,
+  addFilmsFromFiles,
 }

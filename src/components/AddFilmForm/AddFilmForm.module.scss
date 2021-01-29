@@ -1,7 +1,7 @@
 @import "../../static/scss/mixins";
 
 .formBlock {
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 
 .formTitle {
@@ -17,7 +17,7 @@
 }
 
 .inputsBlock {
-  margin-bottom: 60px;
+  margin-bottom: 20px;
 
   & div:not(:last-child) {
     margin-bottom: 20px;
@@ -27,25 +27,10 @@
 .buttonsBlock {
   display: flex;
   flex-direction: column;
-  @media (max-width: 767px) {
-    align-items: center;
-  }
-  & button:not(:last-child) {
-    @media (max-width: 767px) {
-      margin-bottom: 20px;
-    }
-    @media (min-width: 768px) {
-      margin-right: 30px;
-    }
-  }
-  @media (min-width: 768px) {
-    flex-direction: row;
-  }
 }
 
 .btn {
-  font-family: "Roboto", sans-serif;
-  font-weight: 600;
+  @include my-font-styles(#000, 100%, 16px, 700);
   height: 36px;
   display: block;
   margin-right: auto;
