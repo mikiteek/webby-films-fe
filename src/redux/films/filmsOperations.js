@@ -14,7 +14,7 @@ const deleteFilm = id => dispatch => {
     .delete(`/films/${id}`)
     .then(() => {
       setTimeout(successDeleteDataNotify, 0);
-      dispatch(filmsActions.deleteFilmSuccess(id));
+      return dispatch(filmsActions.deleteFilmSuccess(id));
     })
     .catch(({response}) => {
       errorNotify("Wrong deleting, check data");
@@ -52,7 +52,7 @@ const addFilm = film => dispatch => {
     .post("/films", film)
     .then(({data}) => {
       setTimeout(successAddDataNotify, 0);
-      dispatch(filmsActions.getFilmsByQuerySuccess(data));
+      return dispatch(filmsActions.getFilmsByQuerySuccess(data));
     })
     .catch(({response}) => dispatch(filmsActions.getFilmsByQueryError(response)))
     .finally(() => dispatch(filmsActions.showSpinner(false)));
@@ -73,7 +73,7 @@ const addFilmsFromFiles = film => dispatch => {
     })
     .then(({data}) => {
       setTimeout(successAddDataNotify, 0);
-      dispatch(filmsActions.addFilmsDataFromFileSuccess(data));
+      return dispatch(filmsActions.addFilmsDataFromFileSuccess(data));
     })
     .catch(({response}) => {
       errorNotify("Wrong adding films from file, check file");

@@ -9,7 +9,7 @@ const items = createReducer(itemsInit, {
   [filmsActions.getAllFilmsSuccess]: (state, {payload}) => payload,
   [filmsActions.getFilmsByQuerySuccess]: (state, {payload}) => payload,
   [filmsActions.addFilmSuccess]: (state, {payload}) => state.push(payload),
-  [filmsActions.addFilmsDataFromFileSuccess]: (state, {payload}) => state.push(...payload),
+  [filmsActions.addFilmsDataFromFileSuccess]: (state, {payload}) => { state.push(...payload) },
 });
 
 const errorInit = {};
