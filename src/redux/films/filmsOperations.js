@@ -2,7 +2,7 @@ import axios from "axios";
 
 import filmsActions from "./filmsActions";
 import generateQueryString from "../../helpers/generateQueryString";
-import {successAddDataNotify, successDeleteDataNotify} from "../../utils/notify";
+import {successAddDataNotify, successDeleteDataNotify, errorNotify} from "../../utils/notify";
 
 axios.defaults.baseURL = "https://calm-woodland-55145.herokuapp.com";
 
@@ -12,12 +12,15 @@ const deleteFilm = id => dispatch => {
 
   axios
     .delete(`/films/${id}`)
-    .then(() => dispatch(filmsActions.deleteFilmSuccess(id)))
-    .catch(({response}) => dispatch(filmsActions.deleteFilmError(response)))
-    .finally(() => {
+    .then(() => {
       setTimeout(successDeleteDataNotify, 0);
-      dispatch(filmsActions.showSpinner(false));
-    });
+      dispatch(filmsActions.deleteFilmSuccess(id));
+    })
+    .catch(({response}) => {
+      errorNotify("Wrong deleting, check data");
+      dispatch(filmsActions.deleteFilmError(response))
+    })
+    .finally(() => dispatch(filmsActions.showSpinner(false)));
 }
 
 const getAllFilms = () => dispatch => {
@@ -47,12 +50,12 @@ const addFilm = film => dispatch => {
   dispatch(filmsActions.showSpinner(true));
   axios
     .post("/films", film)
-    .then(({data}) => dispatch(filmsActions.getFilmsByQuerySuccess(data)))
-    .catch(({response}) => dispatch(filmsActions.getFilmsByQueryError(response)))
-    .finally(() => {
+    .then(({data}) => {
       setTimeout(successAddDataNotify, 0);
-      dispatch(filmsActions.showSpinner(false));
-    });
+      dispatch(filmsActions.getFilmsByQuerySuccess(data));
+    })
+    .catch(({response}) => dispatch(filmsActions.getFilmsByQueryError(response)))
+    .finally(() => dispatch(filmsActions.showSpinner(false)));
 }
 
 const addFilmsFromFiles = film => dispatch => {
@@ -68,12 +71,15 @@ const addFilmsFromFiles = film => dispatch => {
         'Content-Type': 'multipart/form-data'
       }
     })
-    .then(({data}) => dispatch(filmsActions.addFilmsDataFromFileSuccess(data)))
-    .catch(({response}) => dispatch(filmsActions.addFilmsDataFromFileError(response)))
-    .finally(() => {
+    .then(({data}) => {
       setTimeout(successAddDataNotify, 0);
-      dispatch(filmsActions.showSpinner(false));
-    });
+      dispatch(filmsActions.addFilmsDataFromFileSuccess(data));
+    })
+    .catch(({response}) => {
+      errorNotify("Wrong adding films from file, check file");
+      dispatch(filmsActions.addFilmsDataFromFileError(response))
+    })
+    .finally(() => dispatch(filmsActions.showSpinner(false)));
 }
 
 export default {
