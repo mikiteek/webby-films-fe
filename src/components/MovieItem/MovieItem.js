@@ -11,7 +11,7 @@ class MovieItem extends Component {
   }
 
   toggleDropDownList = (event) => {
-    if (event.target !== event.currentTarget) {
+    if (event.target.classList.contains(styles.btn)) {
       return;
     }
     const {id} = this.props;
