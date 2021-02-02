@@ -8,14 +8,12 @@ import styles from "./AddFilmForm.module.scss";
 
 ValidatorForm.addValidationRule("isUniqueItems", (value) => {
   const items = value.split(", ");
-  let isUniqueItems = true;
   for (let i = 0; i < items.length; i++) {
     if (i !== items.lastIndexOf(items[i])) {
-      isUniqueItems = false;
-      break;
+      return false;
     }
   }
-  return isUniqueItems;
+  return true;
 });
 
 class AddFilmForm extends Component {
@@ -26,13 +24,16 @@ class AddFilmForm extends Component {
     stars: "Sam Yorington, Zoi Saldana, Siguni Wiwer",
   }
 
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
     const body = {
       ...this.state,
       stars: this.state.stars.split(", ")
     }
-    this.props.onSubmit(body);
+    const item = await this.props.onSubmit(body);
+    if (item) {
+      this.resetForm();
+    }
   }
 
   handleChange = (event) => {
