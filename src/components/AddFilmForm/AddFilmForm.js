@@ -18,10 +18,10 @@ ValidatorForm.addValidationRule("isUniqueItems", (value) => {
 
 class AddFilmForm extends Component {
   state = {
-    title: "Avatar",
-    releaseYear: 2009,
+    title: "",
+    releaseYear: "",
     format: "DVD",
-    stars: "Sam Yorington, Zoi Saldana, Siguni Wiwer",
+    stars: "",
   }
 
   handleSubmit = async (event) => {
