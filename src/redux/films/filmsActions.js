@@ -22,6 +22,8 @@ const addFilmsDataFromFileError = createAction("films/addFromDataError");
 
 const showSpinner = createAction("spinner/showSpinner");
 
+const searchParams = createAction("search/searchParams");
+
 export default {
   deleteFilmRequest,
   deleteFilmSuccess,
@@ -39,4 +41,5 @@ export default {
   addFilmsDataFromFileSuccess,
   addFilmsDataFromFileError,
   showSpinner,
+  searchParams,
 }

@@ -1,13 +1,13 @@
-const generateQueryString = (title, star) => {
-  let queryString = `/films/search`;
+const generateQueryString = (title, star, page, limit) => {
+  const queryString = `/films/search?page=${page}&limit=${limit}`;
   if (title && star) {
-    queryString = `/films/search?title=${title}&star=${star}`;
+    return queryString + `title=${title}&star=${star}`;
   }
   else if (title) {
-    queryString = `/films/search?title=${title}`;
+    return queryString + `title=${title}`;
   }
   else if (star) {
-    queryString = `/films/search?star=${star}`;
+    return queryString + `star=${star}`;
   }
   return queryString;
 }

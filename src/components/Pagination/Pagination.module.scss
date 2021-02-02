@@ -1,0 +1,54 @@
+@import "../../static/scss/mixins";
+
+.listItems {
+  display: flex;
+  width: 500px;
+  margin: auto;
+}
+.listItems li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.listItems li:not(:last-child):not(:first-child):not(:nth-child(6)) {
+  margin-right: 8px;
+}
+
+.item {
+  width: 48px;
+  height: 48px;
+  background: transparent;
+  border-radius: 8px;
+  border: 2px solid #f1f1f1;
+  cursor: pointer;
+}
+
+.itemLink {
+  @include my-font-styles(#1a1a1a, 1.2, 16px, 400);
+}
+
+.itemPrev, .itemNext {
+  border: none;
+}
+.itemPrev {
+  margin-left: 0;
+  margin-right: 20px;
+}
+.itemNext {
+  margin-right: 0;
+  margin-left: 20px;
+}
+
+.itemLinkNextPrev {
+  @include my-font-styles(#3a80ba, 1.2, 24px, 700);
+}
+
+.active {
+  background-color: #3a80ba;
+  border: none;
+}
+
+.activeLink {
+  color: #fff;
+}
