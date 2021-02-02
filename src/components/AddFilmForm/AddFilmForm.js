@@ -24,13 +24,16 @@ class AddFilmForm extends Component {
     stars: "Sam Yorington, Zoi Saldana, Siguni Wiwer",
   }
 
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
     const body = {
       ...this.state,
       stars: this.state.stars.split(", ")
     }
-    this.props.onSubmit(body);
+    const item = await this.props.onSubmit(body);
+    if (item) {
+      this.resetForm();
+    }
   }
 
   handleChange = (event) => {

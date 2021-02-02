@@ -44,17 +44,25 @@ const getFilmsByQuery = ({title, star, page=1, limit=10}) => dispatch => {
     .finally(() => dispatch(filmsActions.showSpinner(false)));
 }
 
-const addFilm = film => dispatch => {
-  dispatch(filmsActions.addFilmRequest());
-  dispatch(filmsActions.showSpinner(true));
-  axios
-    .post("/films", film)
-    .then(({data}) => {
-      setTimeout(successAddDataNotify, 0);
-      return dispatch(filmsActions.addFilmSuccess(data));
-    })
-    .catch(({response}) => dispatch(filmsActions.addFilmError(response)))
-    .finally(() => dispatch(filmsActions.showSpinner(false)));
+const addFilm = film => async dispatch => {
+  try {
+    dispatch(filmsActions.addFilmRequest());
+    dispatch(filmsActions.showSpinner(true));
+    const {data} = await axios.post("/films", film);
+
+    setTimeout(successAddDataNotify, 0);
+    dispatch(filmsActions.addFilmSuccess(data));
+    return data;
+  }
+  catch ({response}) {
+    dispatch(filmsActions.addFilmError(response));
+    if (response.status === 409) {
+      errorNotify("Such film already exist!!!")
+    }
+  }
+  finally {
+    dispatch(filmsActions.showSpinner(false))
+  }
 }
 
 const addFilmsFromFiles = film => dispatch => {
