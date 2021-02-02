@@ -6,12 +6,24 @@ import TextValidator from "../TextValidator";
 import filmsOperations from "../../redux/films/filmsOperations";
 import styles from "./AddFilmForm.module.scss";
 
+ValidatorForm.addValidationRule("isUniqueItems", (value) => {
+  const items = value.split(", ");
+  let isUniqueItems = true;
+  for (let i = 0; i < items.length; i++) {
+    if (i !== items.lastIndexOf(items[i])) {
+      isUniqueItems = false;
+      break;
+    }
+  }
+  return isUniqueItems;
+});
+
 class AddFilmForm extends Component {
   state = {
-    title: "",
-    releaseYear: "",
-    format: "",
-    stars: "",
+    title: "Avatar",
+    releaseYear: 2009,
+    format: "DVD",
+    stars: "Sam Yorington, Zoi Saldana, Siguni Wiwer",
   }
 
   handleSubmit = (event) => {
@@ -20,12 +32,25 @@ class AddFilmForm extends Component {
       ...this.state,
       stars: this.state.stars.split(", ")
     }
-    this.props.onSubmit(body)
+    this.props.onSubmit(body);
   }
 
   handleChange = (event) => {
     const {target: {name, value}} = event;
+    if (name === "format") {
+      this.state.format = value;
+      return;
+    }
     this.setState({[name]: value});
+  }
+
+  resetForm = () => {
+    this.setState({
+      title: "",
+      releaseYear: "",
+      format: "DVD",
+      stars: "",
+    });
   }
 
   render() {
@@ -55,19 +80,16 @@ class AddFilmForm extends Component {
               type="number"
               value={releaseYear}
               placeholder="Release year; ex: 1986"
-              validators={["required", "isNumber", "minNumber:1890"]}
-              errorMessages={["release year is required", "value must be number", "year must be more than 1889"]}
+              validators={["required", "isNumber", "minNumber:1850", "maxNumber:2020"]}
+              errorMessages={["release year is required", "value must be number", "year must be more than 1849", "year must be less than 2021"]}
             />
-            <TextValidator
-              className={styles.textValidatorInput}
-              onChange={this.handleChange}
-              name="format"
-              type="text"
-              value={format}
-              placeholder="Enter format; ex: DVD"
-              validators={["required"]}
-              errorMessages={["format is required"]}
-            />
+            <div>
+              <select className={styles.textValidatorInput} required value={format} onChange={this.handleChange} name="format">
+                <option value="DVD" className={styles.option}>DVD</option>
+                <option value="VHS" className={styles.option}>VHS</option>
+                <option value="Blu-Ray" className={styles.option}>Blu-Ray</option>
+              </select>
+            </div>
             <TextValidator
               className={styles.textValidatorInput}
               onChange={this.handleChange}
@@ -75,8 +97,8 @@ class AddFilmForm extends Component {
               type="text"
               value={stars}
               placeholder="Stars; Nikol Kidman, Nick Frost"
-              validators={["required"]}
-              errorMessages={["stars is required, delimeter is space with comma"]}
+              validators={["required", "isUniqueItems"]}
+              errorMessages={["stars is required, delimeter is space with comma", "stars must be unique by one film"]}
             />
           </div>
           <div className={styles.buttonsBlock}>
