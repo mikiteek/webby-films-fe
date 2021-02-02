@@ -8,14 +8,12 @@ import styles from "./AddFilmForm.module.scss";
 
 ValidatorForm.addValidationRule("isUniqueItems", (value) => {
   const items = value.split(", ");
-  let isUniqueItems = true;
   for (let i = 0; i < items.length; i++) {
     if (i !== items.lastIndexOf(items[i])) {
-      isUniqueItems = false;
-      break;
+      return false;
     }
   }
-  return isUniqueItems;
+  return true;
 });
 
 class AddFilmForm extends Component {

@@ -51,9 +51,9 @@ const addFilm = film => dispatch => {
     .post("/films", film)
     .then(({data}) => {
       setTimeout(successAddDataNotify, 0);
-      return dispatch(filmsActions.getFilmsByQuerySuccess(data));
+      return dispatch(filmsActions.addFilmSuccess(data));
     })
-    .catch(({response}) => dispatch(filmsActions.getFilmsByQueryError(response)))
+    .catch(({response}) => dispatch(filmsActions.addFilmError(response)))
     .finally(() => dispatch(filmsActions.showSpinner(false)));
 }
 

@@ -7,6 +7,9 @@ import styles from "./MovieItem.module.scss";
 class MovieItem extends Component {
   handleDeleteMovie = (event) => {
     const {target: {dataset}} = event;
+    if (!window.confirm("Are you sure want to delete this movie?")) {
+      return;
+    }
     this.props.onDeleteContact(dataset.id);
   }
 
