@@ -9,15 +9,15 @@ import Header from "../../components/Header";
 import MovieItem from "../../components/MovieItem";
 import styles from "./HomePage.module.scss";
 import Spinner from "../../components/Spinner";
+import Pagination from "../../components/Pagination";
 
 class HomePage extends Component {
   componentDidMount() {
-    this.props.onGetAllFilms();
+    this.props.onGetAllFilms({page:1, limit:10});
   }
 
   render() {
-    const {films} = this.props;
-
+    const {films: {docs, totalDocs, totalPages, page, limit}, searchParams} = this.props;
     return (
       <div>
         {this.props.spinner && <Spinner/>}
@@ -25,7 +25,7 @@ class HomePage extends Component {
         <div className={styles.mainBlock}>
           <main className="container">
             <ul>
-              {films.length > 0 && films.map(film => (
+              {totalDocs > 0 && docs.map(film => (
                 <MovieItem key={film._id}
                            title={film.title}
                            id={film._id}
@@ -36,6 +36,11 @@ class HomePage extends Component {
               ))
               }
             </ul>
+            {totalPages > 1 &&
+              <Pagination
+                paginateProps={{page, totalDocs, limit, ...searchParams}}
+              />
+            }
           </main>
         </div>
         <ToastContainer/>
@@ -51,6 +56,7 @@ const mapDispatchToProps = {
 const mapStateToProps = state => ({
   films: filmsSelector.getFilms(state),
   spinner: filmsSelector.getSpinner(state),
+  searchParams: filmsSelector.getSearchParams,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

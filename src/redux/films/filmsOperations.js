@@ -23,21 +23,20 @@ const deleteFilm = id => dispatch => {
     .finally(() => dispatch(filmsActions.showSpinner(false)));
 }
 
-const getAllFilms = () => dispatch => {
+const getAllFilms = ({page=1, limit=10}) => dispatch => {
   dispatch(filmsActions.getAllFilmsRequest());
   dispatch(filmsActions.showSpinner(true));
-
   axios
-    .get("/films")
+    .get(`/films?page=${page}&limit=${limit}`)
     .then(({data}) => dispatch(filmsActions.getAllFilmsSuccess(data)))
     .catch(({response}) => dispatch(filmsActions.getAllFilmsError(response)))
     .finally(() => dispatch(filmsActions.showSpinner(false)));
 }
 
-const getFilmsByQuery = ({title, star}) => dispatch => {
+const getFilmsByQuery = ({title, star, page=1, limit=10}) => dispatch => {
   dispatch(filmsActions.getFilmsByQueryRequest());
   dispatch(filmsActions.showSpinner(true));
-  let queryString = generateQueryString(title, star);
+  let queryString = generateQueryString(title, star, page, limit);
   axios
     .get(queryString)
     .then(({data}) => dispatch(filmsActions.getFilmsByQuerySuccess(data)))
