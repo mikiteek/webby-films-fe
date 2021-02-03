@@ -15,7 +15,7 @@ class SearchForm extends Component {
     event.preventDefault();
     const {title, star} = this.state;
     this.props.onSubmit({title, star})
-    this.onSetSearchParams({title, star});
+    this.props.onSetSearchParams({title, star});
     this.resetForm();
   }
 
